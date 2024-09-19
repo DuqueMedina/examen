@@ -265,14 +265,20 @@
 
                 <v-col>
                   <div class="text-medium-emphasis">Administrador</div>
-                  <v-text-field
+                  <v-select
 
                     label="Agregar Administrador..."
                     density="compact"
                     variant="outlined"
                     hide-details
-                    single-line       
-                  ></v-text-field>
+                    single-line     
+                    :items="administradores"  
+                  >
+                   <template v-slot:item="{ props, item }">
+                    <v-list-item v-bind="props" title ><v-avatar color="#fec702" class="name-initials" > <span>{{ obtenerIniciales(item.title) }}</span> </v-avatar> {{item.title}}</v-list-item>
+                  </template>
+                  </v-select>
+                   
                 </v-col>
 
                  <v-col>
@@ -310,9 +316,11 @@ const proyectoId = ref(null) ;
 
 let proyecto = ref({})
 
+const administradores = ['Israel Ayala Vazquez', 'Adrian Laurel Isidor']
+
+
+
 const buscarProyecto = () => {
-  // console.log(proyectStore.proyectos[0]);
- 
  
  const getter = proyectStore.getProyectById( +proyectoId.value);
  
@@ -330,6 +338,15 @@ const buscarProyecto = () => {
     }
   }
 };
+
+function obtenerIniciales(nombre) {
+  const palabras = nombre.trim().split(' ');
+
+  const primeraInicial = palabras[0] ? palabras[0][0].toUpperCase() : '';
+  const segundaInicial = palabras[1] ? palabras[1][0].toUpperCase() : '';
+
+  return primeraInicial + segundaInicial;
+}
 
 
 
@@ -352,6 +369,9 @@ padding-bottom: 13px;
 }
 .btn-color{
   background-color: #fec702;
+}
+.name-initials{
+  margin-right: 10px;
 }
 
 
