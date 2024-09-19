@@ -17,7 +17,7 @@
                 variant="outlined"
                 hide-details
                 single-line      
-              readonly
+                readonly
                
                 
     
@@ -36,7 +36,7 @@
 
               <div class="text-medium-emphasis">Descripción del proyecto</div>
               <v-text-field
-              class="form-spacing"
+                class="form-spacing"
                 density="compact"
                 variant="outlined"
                 hide-details
@@ -47,7 +47,7 @@
 
               <div class="text-medium-emphasis">Objetivos a los que contribuye el proyecto</div>
               <v-select
-              class="form-spacing"
+                class="form-spacing"
                 v-model="objProyecto"
                 density="compact"
                 variant="outlined"
@@ -89,6 +89,12 @@
                 </v-col>
 
               </v-row>
+
+              <v-row>
+                <v-col class="d-flex align-end" >
+                  <v-btn rounded class="btn-color text-none">Prioridad del proyecto</v-btn>
+                </v-col>
+              </v-row>
      
         
       </v-col>
@@ -106,7 +112,9 @@
 
             <v-row>
               <v-col>
+                <div>
                 <div class="text-medium-emphasis">ID Proyecto</div>
+                <div  style="background-color: #FFFFFF ">
                   <v-text-field
                     density="compact"
                     variant="outlined"
@@ -114,9 +122,11 @@
                     single-line
         
                   ></v-text-field>
+                </div>
+                </div>
                 </v-col>
                 <v-col class="d-flex align-end" >
-                  <v-btn >Buscar Proyecto</v-btn>
+                  <v-btn rounded class="btn-color text-none"  >Buscar Proyecto</v-btn>
                 </v-col>
 
                 
@@ -124,21 +134,25 @@
             </v-row>
             <div class="text-medium-emphasis">Nombre del proyecto</div>
               <v-text-field
-              class="form-spacing"
+                class="form-spacing"
                 density="compact"
                 variant="outlined"
                 hide-details
                 single-line
+                readonly
+                disabled
     
               ></v-text-field>
 
               <div class="text-medium-emphasis">Descripción del proyecto</div>
               <v-text-field
-              class="form-spacing"
+                class="form-spacing"
                 density="compact"
                 variant="outlined"
                 hide-details
                 single-line
+                readonly
+                disabled
     
               ></v-text-field>
 
@@ -147,10 +161,13 @@
                 <v-col cols=6>
                   <div class="text-medium-emphasis">Fecha de creación</div>
                   <v-text-field
+                    label="dd/mm/aaaa"
                     density="compact"
                     variant="outlined"
                     hide-details
-                    single-line       
+                    single-line
+                    readonly
+                    disabled      
                   ></v-text-field>
                 </v-col>
 
@@ -161,7 +178,9 @@
                     density="compact"
                     variant="outlined"
                     hide-details
-                    single-line       
+                    single-line      
+                    readonly
+                    disabled 
                   ></v-text-field>
                 </v-col>
 
@@ -171,7 +190,9 @@
                     density="compact"
                     variant="outlined"
                     hide-details
-                    single-line       
+                    single-line
+                    readonly
+                    disabled    
                   ></v-text-field>
                 </v-col>
 
@@ -179,26 +200,27 @@
 
           <v-row>
               <v-col>
-                  <div class="text-medium-emphasis">Fecha Inicio</div>
+                  <div class="text-medium-emphasis">Pilar del proyecto</div>
                   <v-text-field
                     density="compact"
                     variant="underlined"
                     hide-details
                     single-line   
                     prepend-icon=""
-                       
+                    readonly
                   ></v-text-field>
                 </v-col>
 
 
                 <v-col>
-                  <div class="text-medium-emphasis">Fecha Fin</div>
+                  <div class="text-medium-emphasis">Calificación Comité de inversión</div>
                   <v-text-field
                     density="compact"
                     variant="underlined"
                     hide-details
                     single-line     
                     prepend-icon=""
+                    readonly
                       
                   ></v-text-field>
                 </v-col>
@@ -216,6 +238,8 @@
                 <v-col>
                   <div class="text-medium-emphasis">Responsables del proyecto</div>
                   <v-text-field
+
+                    label = "Agregar Responsable del proyecto..."
                     density="compact"
                     variant="outlined"
                     hide-details
@@ -227,6 +251,8 @@
                 <v-col>
                   <div class="text-medium-emphasis">Administrador</div>
                   <v-text-field
+
+                    label="Agregar Administrador..."
                     density="compact"
                     variant="outlined"
                     hide-details
@@ -237,6 +263,8 @@
                  <v-col>
                   <div class="text-medium-emphasis">Involucrados (opcional)</div>
                   <v-text-field
+
+                    label="Agregar involucrado..."
                     density="compact"
                     variant="outlined"
                     hide-details
@@ -277,6 +305,9 @@ const objProyecto = ref();
 .form-spacing{
 padding-bottom: 13px;
 
+}
+.btn-color{
+  background-color: #fec702;
 }
 
 
