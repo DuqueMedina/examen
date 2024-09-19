@@ -116,6 +116,7 @@
                 <div class="text-medium-emphasis">ID Proyecto</div>
                 <div  style="background-color: #FFFFFF ">
                   <v-text-field
+                  v-model="proyectoId"
                     density="compact"
                     variant="outlined"
                     hide-details
@@ -126,74 +127,86 @@
                 </div>
                 </v-col>
                 <v-col class="d-flex align-end" >
-                  <v-btn rounded class="btn-color text-none"  >Buscar Proyecto</v-btn>
+                  <v-btn @click="buscarProyecto"  rounded class="btn-color text-none"  >Buscar Proyecto</v-btn>
                 </v-col>
 
                 
 
             </v-row>
             <div class="text-medium-emphasis">Nombre del proyecto</div>
+            <div  style="background-color: #eaeaea ; margin-bottom: 13px;">
               <v-text-field
-                class="form-spacing"
+                v-model="proyecto.nombreProyecto"
+                class=""
                 density="compact"
                 variant="outlined"
                 hide-details
                 single-line
                 readonly
-                disabled
+                
     
               ></v-text-field>
+            </div>
 
               <div class="text-medium-emphasis">Descripción del proyecto</div>
+              <div  style="background-color: #eaeaea ; margin-bottom: 13px;">
               <v-text-field
-                class="form-spacing"
+              v-model="proyecto.decProyecto"
                 density="compact"
                 variant="outlined"
                 hide-details
                 single-line
-                readonly
-                disabled
-    
+                readonly   
               ></v-text-field>
+              </div>
 
                 <v-row>
 
                 <v-col cols=6>
                   <div class="text-medium-emphasis">Fecha de creación</div>
+                  <div  style="background-color: #eaeaea">
                   <v-text-field
+                    v-model="proyecto.fechaCreacion"
                     label="dd/mm/aaaa"
                     density="compact"
                     variant="outlined"
                     hide-details
                     single-line
                     readonly
-                    disabled      
+                        
                   ></v-text-field>
+                  </div>
                 </v-col>
 
 
                 <v-col>
                   <div class="text-medium-emphasis">Capex</div>
+                  <div  style="background-color: #eaeaea ">
                   <v-text-field
+                    v-model="proyecto.cap"
                     density="compact"
                     variant="outlined"
                     hide-details
                     single-line      
                     readonly
-                    disabled 
+                   
                   ></v-text-field>
+                  </div>
                 </v-col>
 
                  <v-col>
                   <div class="text-medium-emphasis">Opex</div>
+                  <div  style="background-color: #eaeaea">
                   <v-text-field
+                    v-model="proyecto.ope"
                     density="compact"
                     variant="outlined"
                     hide-details
                     single-line
                     readonly
-                    disabled    
+                      
                   ></v-text-field>
+                  </div>
                 </v-col>
 
               </v-row>
@@ -202,6 +215,7 @@
               <v-col>
                   <div class="text-medium-emphasis">Pilar del proyecto</div>
                   <v-text-field
+                    v-model="proyecto.pilarProyecto"
                     density="compact"
                     variant="underlined"
                     hide-details
@@ -215,6 +229,7 @@
                 <v-col>
                   <div class="text-medium-emphasis">Calificación Comité de inversión</div>
                   <v-text-field
+                  v-model="proyecto.califComIn"
                     density="compact"
                     variant="underlined"
                     hide-details
@@ -273,6 +288,7 @@
                 </v-col>
 
               </v-row>
+             
 
       
     </v-responsive>
@@ -280,12 +296,40 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { reactive, ref, computed  } from 'vue';
+import { useProyectStore } from "@/stores/app";
+
+
+const proyectStore = useProyectStore()
 
 const idSistema = 0;
 const nombProyecto = "";
 const descProyecto = "";
 const objProyecto = ref();
+const proyectoId = ref(null) ;
+
+let proyecto = ref({})
+
+const buscarProyecto = () => {
+  // console.log(proyectStore.proyectos[0]);
+ 
+ 
+ const getter = proyectStore.getProyectById( +proyectoId.value);
+ 
+ if(getter){
+    proyecto.value = getter
+  }else{
+    proyecto.value = {
+      nombreProyecto:"",
+      decProyecto:"",
+      fechaCreacion: "",
+      cap: "",
+      ope: "",
+      pilarProyecto:"",
+      califComIn: "",
+    }
+  }
+};
 
 
 
