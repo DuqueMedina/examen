@@ -294,6 +294,13 @@
                 </v-col>
 
               </v-row>
+
+
+              <v-row>
+                <v-col>
+                    <DataTable/>
+                </v-col>
+              </v-row>
              
 
       
@@ -304,6 +311,7 @@
 <script setup>
 import { reactive, ref, computed  } from 'vue';
 import { useProyectStore } from "@/stores/app";
+import DataTable from './DataTable.vue'
 
 
 const proyectStore = useProyectStore()
